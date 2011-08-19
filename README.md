@@ -5,9 +5,22 @@ Lion properly to enable TRIM support on non-Apple branded
 SSDs, here's a script that ought to make it harder to shoot
 yourself in the foot.
 
+## Warning ##
+
+I took most steps I could to ensure kitten safety, but can make no warranty.
+I have tested this successfully on a MacBook Pro 5,5 with Mac OS X 10.7.1 and a SATA-II Samsung 470 Series 128G in the HD slot. The patched file is the same as in 10.7.0.
+
 ## Usage ##
 
-To use this, simply start up a terminal and run the script.
+Simply start up a terminal and run the script.
+As the kext cache gets cleared upon success you might find it seems to 
+take some time to complete.
+
+Once the script ends (no output means success), reboot.
+
+You can then check if it was taken into account via the System Profiler: go to Serial-ATA and look for "TRIM support: yes".
+
+It is debated whether Sandforce-based SSDs (or other auto-GC SSDs) actually need this.
 
 ## Available arguments ##
 
