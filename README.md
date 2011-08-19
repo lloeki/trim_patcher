@@ -39,3 +39,8 @@ Run with no arguments to see a quick reminder. Here's something more extensive a
 
 In any case of success, the kext cache gets cleared.
 
+## Thanks ##
+ 
+- [Grant Pannell](http://digitaldj.net/2011/07/21/trim-enabler-for-lion/)
+- [digital_dreamer](http://www.insanelymac.com/forum/index.php?s=523f85101e81849b73e6333ed420c6de&showtopic=256493&st=0&p=1680183&#entry1680183)
+
