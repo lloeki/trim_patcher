@@ -1,15 +1,15 @@
-= TRIM patcher =
+# TRIM patcher #
 
 Based on Grant Pannell [information](http://digitaldj.net/2011/07/21/trim-enabler-for-lion/) about how to patch
 Lion properly to enable TRIM support on non-Apple branded
 SSDs, here's a script that ought to make it harder to shoot
 yourself in the foot.
 
-== Usage ==
+## Usage ##
 
 To use this, simply start up a terminal and run the script.
 
-== Available arguments ==
+## Available arguments ##
 
     --apply     applies the patch, after making sure we know the
                 file we're applying to, backing it up only if it's
