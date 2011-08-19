@@ -24,6 +24,8 @@ It is debated whether Sandforce-based SSDs (or other auto-GC SSDs) actually need
 
 ## Available arguments ##
 
+Run with no arguments to see a quick reminder. Here's something more extensive about what's actually done:
+
     --apply     applies the patch, after making sure we know the
                 file we're applying to, backing it up only if it's
                 the original one, and subsequently checking if the
