@@ -119,7 +119,7 @@ case "$1" in
         test -f "$backup" && echo "backup: $backup"
         ;;
     *)
-        echo "usage: $(basename $0) --apply|--revert|--restore"
+        echo "usage: $(basename $0) --apply|--revert|--restore|--status"
         exit 255
         ;;
 esac
