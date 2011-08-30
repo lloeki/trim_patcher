@@ -114,6 +114,7 @@ case "$1" in
         clear_cache
         ;;
     --revert)
+        error "disabled for now" 18
         check_modified "$target" || error "unknown file" 1
         revert_patch "$target" || error "revert failed" 3
         check_original "$target" || error "revert failed" 1
