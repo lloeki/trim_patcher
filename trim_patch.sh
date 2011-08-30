@@ -3,8 +3,10 @@
 target="/System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage"
 backup="$target.original"
 
-original_md5="155b426c856c854e54936339fbc88d72"
-modified_md5="945944136009c9228fffb513ab5bf734"
+
+os_version() {
+    /usr/bin/defaults read "/System/Library/CoreServices/SystemVersion" ProductVersion
+}
 
 error() {
     echo "$1"
@@ -13,6 +15,22 @@ error() {
 
 md5() {
   /sbin/md5 "$1" | sed 's/.*= //'
+}
+
+set_md5_for_version() {
+    case $(os_version) in
+        "10.6.8")
+		original_md5="25a29cbdbb89329a6ce846c9b05af5f0"
+		modified_md5="d76b57daf4d4c2ff5b52bc7b4b2dcfc1"
+                ;;
+        "10.7.0"|"10.7.1")
+		original_md5="155b426c856c854e54936339fbc88d72"
+		modified_md5="945944136009c9228fffb513ab5bf734"
+                ;;
+        *)
+                error "unsupported version: $os_version" 14
+                ;;
+    esac
 }
 
 check_original() {
@@ -73,7 +91,7 @@ restore() {
 }
 
 apply_patch() {
-    sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' "$1"
+    sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' "$1"
 }
 
 revert_patch() {
@@ -85,6 +103,8 @@ clear_cache() {
     sudo kextcache -system-caches
 }
 
+
+set_md5_for_version
 case "$1" in
     --apply)
         check_original "$target" || error "unknown file" 1
