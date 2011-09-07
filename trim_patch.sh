@@ -23,7 +23,7 @@ set_md5_for_version() {
 		original_md5="25a29cbdbb89329a6ce846c9b05af5f0"
 		modified_md5="d76b57daf4d4c2ff5b52bc7b4b2dcfc1"
                 ;;
-        "10.7.0"|"10.7.1")
+        "10.7"|"10.7.1")
 		original_md5="155b426c856c854e54936339fbc88d72"
 		modified_md5="945944136009c9228fffb513ab5bf734"
                 ;;
