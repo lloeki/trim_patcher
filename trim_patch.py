@@ -116,6 +116,7 @@ def do_restore():
     backup_status()
     shutil.copyfile(backup, target)
     print "done"
+    clear_kext_cache()
 
 def do_apply():
     check_rootness()
@@ -138,10 +139,10 @@ def do_apply():
             print "no change made"
         else:
             print "done"
+            clear_kext_cache()
     except UnknownFile:
         print "failed, ",
         do_restore()
-    clear_kext_cache()
 
 def do_status():
     try:
