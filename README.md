@@ -7,37 +7,38 @@ yourself in the foot.
 
 ## Warning ##
 
-I took most steps I could to ensure kitten safety, but can make no warranty.
-I have tested this successfully on a MacBook Pro 5,5 with Mac OS X 10.7.1 and a SATA-II Samsung 470 Series 128G in the HD slot. The patched file is the same as in 10.7.0.
+I took most steps I could to ensure kitten safety, but can make no warranty.In any case you're on your own. This is ultimately a sensitive hack and you take full responsibility by running this script.
+
+I have tested this successfully on a MacBook Pro 5,5 with Mac OS X 10.7.1 upgraded from 10.7 and a SATA-II Samsung 470 Series 128G in the HD slot. The patched file is the same as in 10.7. I later tested it on 10.7.2.
 
 ## Usage ##
 
-Simply start up a terminal and run the script.
+Simply start up a terminal and run the script:
+
+    python trim_patcher.py
+
 As the kext cache gets cleared upon success you might find it seems to 
 take some time to complete.
 
-Once the script ends (no output means success), reboot.
+Once the script ends, reboot.
 
 You can then check if it was taken into account via the System Profiler: go to Serial-ATA and look for "TRIM support: yes".
 
-It is debated whether Sandforce-based SSDs (or other auto-GC SSDs) actually need this.
+It is debated whether Sandforce-based SSDs (or other recent auto-GC SSDs) actually need this, both performance-wise and wear-wise.
 
 ## Available arguments ##
 
 Run with no arguments to see a quick reminder. Here's something more extensive about what's actually done:
 
-    --apply     applies the patch, after making sure we know the
+    apply       applies the patch, after making sure we know the
                 file we're applying to, backing it up only if it's
                 the original one, and subsequently checking if the
                 patch applied correctly.
-    --revert    reverts the patch, after making sure we're working
-                on the patched file, and afterward checks for correct
-                reversion.
-    --restore   restores from the previously made backup.
-    --status    shows current situation, including status of the file
+    restore     restores from the previously made backup.
+    status      shows current situation, including status of the file
                 and whether a backup is available.
 
-In any case of success, the kext cache gets cleared.
+In any case of changing success, the kext cache gets cleared.
 
 ## Thanks ##
  
