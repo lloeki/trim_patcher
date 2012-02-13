@@ -91,6 +91,9 @@ def apply_patch():
     with open(target, 'wb') as out:
         out.write(patched_data)
 
+def perform_backup():
+    shutil.copyfile(target, backup)
+
 def do_backup():
     check_rootness()
     try:
@@ -103,7 +106,7 @@ def do_backup():
                 sys.exit(1)
             else:
                 print "backing up...",
-                shutil.copyfile(target, backup)
+                perform_backup()
                 print "done"
         except UnknownFile:
             print "unknown file, won't backup"
