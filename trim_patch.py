@@ -97,22 +97,27 @@ def perform_backup():
 def do_backup():
     check_rootness()
     try:
-        backup_status()
-    except NoBackup:
-        try:
-            s, _ = target_status()
-            if s == PATCHED:
-                print "already patched, won't backup"
-                sys.exit(1)
-            else:
+        s, t = target_status()
+        if s == PATCHED:
+            print "already patched, won't backup"
+            sys.exit(1)
+        else:
+            try:
+                _, v = backup_status()
+            except NoBackup:
                 print "backing up...",
                 perform_backup()
                 print "done"
-        except UnknownFile:
-            print "unknown file, won't backup"
-            sys.exit(1)
-    else:
-        print "backup found"
+            else:
+                if v == t:
+                    print "backup found"
+                else:
+                    print "backing up...",
+                    perform_backup()
+                    print "done"
+    except UnknownFile as e:
+        print "unknown file, won't backup (md5=%s)" % e.md5
+        sys.exit(1)
 
 def do_restore():
     check_rootness()
