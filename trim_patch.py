@@ -161,8 +161,8 @@ def do_status():
         print s+',', ' or '.join(v)
     except NoBackup:
         print "none"
-    except UnknownFile:
-        print "unknown"
+    except UnknownFile as e:
+        print "unknown (md5=%s)" % e.md5
 
 def do_diff():
     try:
