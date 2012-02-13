@@ -167,12 +167,21 @@ except UnknownFile:
     print >> sys.stderr, "unknown file"
     sys.exit(1)
 
+def do_diff():
+    try:
+        backup_status()
+    except NoBackup:
+        print "no backup"
+    else:
+        command = "bash -c 'diff <(xxd \"%s\") <(xxd \"%s\")'" % (backup, target)
+        print os.system(command)
 
 commands = {
         'status': do_status,
         'backup': do_backup,
         'apply': do_apply,
         'restore': do_restore,
+        'diff': do_diff,
         }
 
 try:
