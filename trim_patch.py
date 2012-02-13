@@ -164,13 +164,6 @@ def do_status():
     except UnknownFile:
         print "unknown"
 
-
-try:
-    target_status()
-except UnknownFile:
-    print >> sys.stderr, "unknown file"
-    sys.exit(1)
-
 def do_diff():
     try:
         backup_status()
