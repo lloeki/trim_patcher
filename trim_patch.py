@@ -50,7 +50,8 @@ def clear_kext_cache():
     print "done"
 
 class UnknownFile(Exception):
-    pass
+    def __init__(self, md5=None):
+        self.md5 = md5
 
 class NoBackup(Exception):
     pass
@@ -65,7 +66,7 @@ def target_status():
         return (PATCHED, md5_version[md5_patch_r[h]])
     except KeyError:
         pass
-    raise UnknownFile
+    raise UnknownFile(h)
 
 def backup_status():
     if not os.path.exists(backup):
@@ -79,7 +80,7 @@ def backup_status():
         return (PATCHED, md5_version[md5_patch_r[h]])
     except KeyError:
         pass
-    raise UnknownFile
+    raise UnknownFile(h)
 
 def apply_patch():
     search_re = "(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)"
@@ -126,8 +127,8 @@ def do_apply():
         if s == PATCHED:
             print "already patched"
             sys.exit()
-    except UnknownFile:
-        print "unknown file: won't patch"
+    except UnknownFile as e:
+        print "unknown file: won't patch (md5=%s)" % e.md5
         sys.exit(1)
     
     print "patching...",
@@ -140,8 +141,8 @@ def do_apply():
         else:
             print "done"
             clear_kext_cache()
-    except UnknownFile:
-        print "failed, ",
+    except UnknownFile as e:
+        print "failed (md5=%s), " % e.md5,
         do_restore()
 
 def do_status():
@@ -149,8 +150,8 @@ def do_status():
         print "target:",
         s, v = target_status()
         print s+',', ' or '.join(v)
-    except UnknownFile:
-        print "unknown"
+    except UnknownFile as e:
+        print "unknown (md5=%s)" % e.md5
     try:
         print "backup:",
         s, v = backup_status()
