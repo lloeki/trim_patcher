@@ -89,7 +89,7 @@ def backup_status():
     raise UnknownFile(h)
 
 def apply_patch():
-    search_re = "(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)"
+    search_re = "(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}[^\x00])"
     replace_re = "\\1\x00\x00\x00\x00\x00\x00\x00\x00\x00\\2"
     with open(target, 'rb') as f:
         source_data = f.read()
