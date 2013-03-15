@@ -124,6 +124,11 @@ def perform_backup():
     shutil.copyfile(target, backup)
 
 
+def is_trim_enabled():
+    trim_info = backquote("ioreg -p IODeviceTree -r -n TRIM")
+    return trim_info.strip() != ''
+
+
 def do_backup():
     check_rootness()
     try:
@@ -193,6 +198,7 @@ def do_status():
         print s+',', ' or '.join(v)
     except UnknownFile as e:
         print "unknown (md5=%s)" % e.md5
+
     try:
         print "backup:",
         s, v = backup_status()
@@ -201,6 +207,11 @@ def do_status():
         print "none"
     except UnknownFile as e:
         print "unknown (md5=%s)" % e.md5
+
+    if is_trim_enabled():
+        print "TRIM: enabled"
+    else:
+        print "TRIM: disabled"
 
 
 def do_diff():
