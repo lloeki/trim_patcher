@@ -224,6 +224,7 @@ def do_diff():
                    "'diff <(xxd \"%s\") <(xxd \"%s\")'" % (backup, target))
         print os.system(command)
 
+
 commands = {
     'status': do_status,
     'backup': do_backup,
