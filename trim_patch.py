@@ -129,8 +129,8 @@ def perform_backup():
 
 
 def is_trim_enabled():
-    trim_info = backquote("ioreg -p IODeviceTree -r -n TRIM")
-    return trim_info.strip() != ''
+    trim_info = backquote("system_profiler SPSerialATADataType -detailLevel mini")
+    return trim_info.find("TRIM Support: Yes") != -1
 
 
 def do_backup():
