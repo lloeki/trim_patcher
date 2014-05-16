@@ -32,6 +32,7 @@ md5_version = {
     "8c5a53a607ffb335c039bad220fa0230": ["10.8.5"],
     "8a6e253e621db78e1fa0d14274ade63c": ["10.9"],
     "a11100b558cade33c35924f08924a728": ["10.9.2"],
+    "3e794ede0ec1becce65c580a6efceaca": ["10.9.3"],
 }
 md5_patch = {
     "25a29cbdbb89329a6ce846c9b05af5f0": "d76b57daf4d4c2ff5b52bc7b4b2dcfc1",
@@ -49,6 +50,7 @@ md5_patch = {
     "8c5a53a607ffb335c039bad220fa0230": "fa1ad2aed34ce95585c13765d831ee65",
     "8a6e253e621db78e1fa0d14274ade63c": "17dc2e1edc35447ea693a29aef969f21",
     "a11100b558cade33c35924f08924a728": "3409ad454e58f6415c38ab2b9e39d64d",
+    "3e794ede0ec1becce65c580a6efceaca": "3ae907c12b58e2e682e215627c87be67",
 }
 md5_patch_r = dict((v, k) for k, v in md5_patch.items())
 
