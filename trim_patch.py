@@ -34,6 +34,7 @@ md5_version = {
     "a11100b558cade33c35924f08924a728": ["10.9.2"],
     "3e794ede0ec1becce65c580a6efceaca": ["10.9.3"],
     "2a8c2b865eba74fe0c5ca8bfa9f7d603": ["10.9.4"],
+    "538221c151b847490fbac997e1776d82": ["10.9.5"],
 }
 md5_patch = {
     "25a29cbdbb89329a6ce846c9b05af5f0": "d76b57daf4d4c2ff5b52bc7b4b2dcfc1",
@@ -53,6 +54,7 @@ md5_patch = {
     "a11100b558cade33c35924f08924a728": "3409ad454e58f6415c38ab2b9e39d64d",
     "3e794ede0ec1becce65c580a6efceaca": "3ae907c12b58e2e682e215627c87be67",
     "2a8c2b865eba74fe0c5ca8bfa9f7d603": "9a254024a1c43a102a5c558a6510413e",
+    "538221c151b847490fbac997e1776d82": "6c012761dcbf71437ee1274380347e92",
 }
 md5_patch_r = dict((v, k) for k, v in md5_patch.items())
 
@@ -89,6 +91,7 @@ re_md5 = {
         ],
     1: [
         "2a8c2b865eba74fe0c5ca8bfa9f7d603",
+        "538221c151b847490fbac997e1776d82",
         ],
 }
 md5_re = dict((v, re_index[k]) for k, l in re_md5.items() for v in l)
