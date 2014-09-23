@@ -54,6 +54,35 @@ md5_patch = {
 }
 md5_patch_r = dict((v, k) for k, v in md5_patch.items())
 
+re_index = [
+    {
+        'search': ("(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C"
+                   "\x00{1,20})[^\x00]{9}(\x00{1,20}[^\x00])"),
+        'replace': "\\1\x00\x00\x00\x00\x00\x00\x00\x00\x00\\2"
+    },
+]
+re_md5 = {
+    0: [
+        "25a29cbdbb89329a6ce846c9b05af5f0",
+        "155b426c856c854e54936339fbc88d72",
+        "00bd8e1943e09f2bd12468882aad0bbb",
+        "38100e96270dcb63d355ea8195364bf5",
+        "d2c20ed8211bf5b96c4610450f56c1c3",
+        "48e392b3ca7267e1fd3dd50a20396937",
+        "583d7bbcbe5c5d06d7877d6ccb6c5699",
+        "ff7a9115779fa5923950cbdc6ffb273d",
+        "03d3a46c6d713b00980bc9be453755ff",
+        "85390d06d5aad08b471cf9b7cd69aff4",
+        "c3df44c5ccb86b423e17406f6f9a2bd1",
+        "8bbf5f3928d55dc9ec8017b37a6748f8",
+        "8c5a53a607ffb335c039bad220fa0230",
+        "8a6e253e621db78e1fa0d14274ade63c",
+        "a11100b558cade33c35924f08924a728",
+        "3e794ede0ec1becce65c580a6efceaca",
+        ],
+}
+md5_re = dict((v, re_index[k]) for k, l in re_md5.items() for v in l)
+
 
 def md5(filename):
     h = hashlib.md5()
@@ -118,9 +147,9 @@ def backup_status():
 
 
 def apply_patch():
-    search_re = ("(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C"
-                 "\x00{1,20})[^\x00]{9}(\x00{1,20}[^\x00])")
-    replace_re = "\\1\x00\x00\x00\x00\x00\x00\x00\x00\x00\\2"
+    h = md5(target)
+    search_re = re_md5[h]['search']
+    replace_re = re_md5[h]['replace']
     with open(target, 'rb') as f:
         source_data = f.read()
     patched_data = re.sub(search_re, replace_re, source_data)
