@@ -133,7 +133,8 @@ def perform_backup():
 
 
 def is_trim_enabled():
-    trim_info = backquote("system_profiler SPSerialATADataType -detailLevel mini")
+    trim_info = backquote("system_profiler SPSerialATADataType"
+                          " -detailLevel mini")
     return trim_info.find("TRIM Support: Yes") != -1
 
 
