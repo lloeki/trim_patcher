@@ -5,6 +5,14 @@ Lion properly to enable TRIM support on non-Apple branded
 SSDs, here's a script that ought to make it harder to shoot
 yourself in the foot.
 
+## Important note about Yosemite ##
+
+Yosemite now signs kexts and refuses to load unsigned ones. This means a patched version won't load, hence your Mac won't boot. If you still want to use TRIM patcher on Yosemite, you can use the following command to allow unsigned kexts to load:
+
+    nvram boot-args=kext-dev-mode=1
+
+This comes at a price though, as you're lowering one level of defense in your system security.
+
 ## Warning ##
 
 I took most steps I could to ensure kitten safety, but can make no warranty.In any case you're on your own. This is ultimately a sensitive hack and you take full responsibility by running this script.
