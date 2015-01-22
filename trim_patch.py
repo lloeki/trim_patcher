@@ -161,8 +161,8 @@ def backup_status():
 
 def apply_patch():
     h = md5(target)
-    search_re = re_md5[h]['search']
-    replace_re = re_md5[h]['replace']
+    search_re = md5_re[h]['search']
+    replace_re = md5_re[h]['replace']
     with open(target, 'rb') as f:
         source_data = f.read()
     patched_data = re.sub(search_re, replace_re, source_data)
