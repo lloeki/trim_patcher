@@ -1,5 +1,7 @@
 # TRIM patcher #
 
+**This project is made obsolete by El Capitan, which enables TRIM for third party SSDs out of the box.**
+
 Based on Grant Pannell [information](http://digitaldj.net/2011/07/21/trim-enabler-for-lion/) about how to patch
 Lion properly to enable TRIM support on non-Apple branded
 SSDs, here's a script that ought to make it harder to shoot
